@@ -4,7 +4,7 @@
 
 Name:           fedora-productimg-atomic
 Version:        22
-Release:        1%{?dist}
+Release:        3%{?dist}
 Summary:        Installer branding and configuration for Fedora Atomic
 
 # Copyright and related rights waived via CC0
@@ -30,8 +30,8 @@ is not useful on an installed system.
 %build
 
 %install
-install -m 755 -d %{buildroot}%{loraxtarget}/pyanaconda/installclasses
-install -m 644 %{SOURCE1} %{buildroot}%{loraxtarget}/pyanaconda/installclasses
+install -m 755 -d %{buildroot}%{loraxtarget}/run/product/pyanaconda/installclasses
+install -m 644 %{SOURCE1} %{buildroot}%{loraxtarget}/run/product/pyanaconda/installclasses
 install -m 755 -d %{buildroot}%{loraxanacondadir}/pixmaps
 install -m 644 %{SOURCE0} %{buildroot}%{loraxanacondadir}
 
@@ -43,8 +43,8 @@ ln -sf %{pixmapsource}/sidebar-logo.png %{buildroot}%{loraxanacondadir}/pixmaps/
 
 
 %files
-%dir %{loraxtarget}/pyanaconda/installclasses
-%{loraxtarget}/pyanaconda/installclasses/*.py*
+%dir %{loraxtarget}/run/product/pyanaconda/installclasses
+%{loraxtarget}/run/product/pyanaconda/installclasses/*.py*
 %dir %{_datadir}/lorax/product/usr/share/anaconda
 %{_datadir}/lorax/product/usr/share/anaconda/anaconda-gtk.css
 %dir %{_datadir}/lorax/product/usr/share
