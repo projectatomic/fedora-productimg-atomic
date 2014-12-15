@@ -4,7 +4,7 @@
 
 Name:           fedora-productimg-atomic
 Version:        22
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Installer branding and configuration for Fedora Atomic
 
 # Copyright and related rights waived via CC0
