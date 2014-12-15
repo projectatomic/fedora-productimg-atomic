@@ -19,7 +19,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from pyanaconda.installclass import BaseInstallClass
+from pyanaconda.installclasses.fedora import FedoraBaseInstallClass
 from pyanaconda.constants import *
 from pyanaconda.product import *
 from pyanaconda import network
@@ -32,7 +32,7 @@ from blivet.platform import platform
 from blivet.devicelibs import swap
 from blivet.size import Size
 
-class AtomicInstallClass(BaseInstallClass):
+class AtomicInstallClass(FedoraBaseInstallClass):
     name = "Atomic Host"
 
     def setDefaultPartitioning(self, storage):
