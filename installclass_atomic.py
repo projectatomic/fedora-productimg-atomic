@@ -28,12 +28,14 @@ from pyanaconda import iutil
 import types
 from pyanaconda.kickstart import getAvailableDiskSpace
 from blivet.partspec import PartSpec
+from blivet.autopart import swapSuggestion
 from blivet.platform import platform
-from blivet.devicelibs import swap
 from blivet.size import Size
 
 class AtomicInstallClass(FedoraBaseInstallClass):
     name = "Atomic Host"
+    sortPriority = 11000
+    hidden = False
 
     def setDefaultPartitioning(self, storage):
         # 3GB is obviously arbitrary, but we have to pick some default.
@@ -46,7 +48,7 @@ class AtomicInstallClass(FedoraBaseInstallClass):
             autorequests.extend(bootreqs)
 
         disk_space = getAvailableDiskSpace(storage)
-        swp = swap.swapSuggestion(disk_space=disk_space)
+        swp = swapSuggestion(disk_space=disk_space)
         autorequests.append(PartSpec(fstype="swap", size=swp, grow=False,
                                     lv=True, encrypted=True))
 
@@ -60,7 +62,3 @@ class AtomicInstallClass(FedoraBaseInstallClass):
 
         storage.autoPartitionRequests = autorequests
 
-    @property
-    def sortPriority(self):
-        """ Obviously the correct answer is 42. """
-        return 42
