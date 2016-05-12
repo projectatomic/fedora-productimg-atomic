@@ -22,10 +22,6 @@
 from pyanaconda.installclasses.fedora import FedoraBaseInstallClass
 from pyanaconda.constants import *
 from pyanaconda.product import *
-from pyanaconda import network
-from pyanaconda import nm
-from pyanaconda import iutil
-import types
 from pyanaconda.kickstart import getAvailableDiskSpace
 from blivet.partspec import PartSpec
 from blivet.autopart import swapSuggestion
