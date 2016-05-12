@@ -19,10 +19,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import logging
+log = logging.getLogger("anaconda")
+
 from pyanaconda.installclasses.fedora import FedoraBaseInstallClass
 from pyanaconda.constants import *
 from pyanaconda.product import *
 from pyanaconda.kickstart import getAvailableDiskSpace
+from pyanaconda.flags import flags
 from blivet.partspec import PartSpec
 from blivet.autopart import swapSuggestion
 from blivet.platform import platform
@@ -32,6 +36,12 @@ class AtomicInstallClass(FedoraBaseInstallClass):
     name = "Atomic Host"
     sortPriority = 11000
     hidden = False
+
+    def configure(self, anaconda):
+        FedoraBaseInstallClass.configure(self, anaconda)
+        # Atomic installations are always single language (#1235726)
+        log.info("Automatically enabling single language mode for %s installation.", self.name)
+        flags.singlelang = True
 
     def setDefaultPartitioning(self, storage):
         # 3GB is obviously arbitrary, but we have to pick some default.
