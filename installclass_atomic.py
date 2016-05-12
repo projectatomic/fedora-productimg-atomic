@@ -36,8 +36,8 @@ class AtomicInstallClass(FedoraBaseInstallClass):
     def setDefaultPartitioning(self, storage):
         # 3GB is obviously arbitrary, but we have to pick some default.
         autorequests = [PartSpec(mountpoint="/", fstype=storage.defaultFSType,
-                                size=Size("1GiB"), maxSize=Size("3GiB"),
-                                grow=True, lv=True)]
+                        size=Size("1GiB"), maxSize=Size("3GiB"),
+                        grow=True, lv=True)]
 
         bootreqs = platform.setDefaultPartitioning()
         if bootreqs:
@@ -46,7 +46,7 @@ class AtomicInstallClass(FedoraBaseInstallClass):
         disk_space = getAvailableDiskSpace(storage)
         swp = swapSuggestion(disk_space=disk_space)
         autorequests.append(PartSpec(fstype="swap", size=swp, grow=False,
-                                    lv=True, encrypted=True))
+                            lv=True, encrypted=True))
 
         for autoreq in autorequests:
             if autoreq.fstype is None:
@@ -57,4 +57,3 @@ class AtomicInstallClass(FedoraBaseInstallClass):
                     autoreq.fstype = storage.defaultFSType
 
         storage.autoPartitionRequests = autorequests
-
